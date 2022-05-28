@@ -9,9 +9,9 @@ const Login = () => {
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
         <div className="bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl">
           <div className="w-3/5 py-24 text-green-400">
-            <h2 className="text-3xl font-bold mb-2">Sign in to Account</h2>
+            <h2 className="text-3xl font-bold mb-2">Sign up to new account</h2>
             <div className="border-2 w-20 border-green-400 inline-block mb-2"></div>
-            <p className="text-gray-400 my-3">use your username account</p>
+            <p className="text-gray-400 my-3">enter your new account</p>
             <div className="flex flex-col items-center">
               <div className="bg-gray-100 w-64 p-1 flex mt-2 rounded-lg">
                 <input

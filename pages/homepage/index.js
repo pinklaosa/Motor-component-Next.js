@@ -77,8 +77,10 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <div>
-          
+        <div className="container mx-auto bg-black p-56"> 
+            <div className="grid grid-rows-3 grid-flow-col gap-4">
+                  
+            </div>
         </div>
       </div>
     </>

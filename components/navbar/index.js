@@ -1,16 +1,17 @@
 import { BiUser } from "react-icons/bi";
 import { BsCart } from "react-icons/bs";
 import { FcElectroDevices } from "react-icons/fc";
+import NextLink from "next/link";
 
 const Navbar = () => {
   const menuBar = [
     {
       name: "Home",
-      link: "#",
+      link: "/",
     },
     {
       name: "About",
-      link: "#",
+      link: "/about",
     },
     {
       name: "Product",
@@ -25,7 +26,9 @@ const Navbar = () => {
     >
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <a href="#" className="flex items-center">
-            <span className="text-5xl mr-5"><FcElectroDevices/></span>
+          <span className="text-5xl mr-5">
+            <FcElectroDevices />
+          </span>
           <span className="self-center text-xl font-semibold whitespace-nowrap">
             B - Motor
           </span>
@@ -33,21 +36,24 @@ const Navbar = () => {
         <div className="flex items-center p-3">
           {menuBar.map((m, i) => (
             <div className=" py-2 px-5" key={i}>
-              <a href={m.link} className="font-semibold hover:text-sky-600">
-                {m.name}
-              </a>
+              <NextLink href={m.link}>
+                <a className="font-semibold hover:text-sky-600">
+                  {m.name}
+                </a>
+              </NextLink>
             </div>
           ))}
-          <a
-            href="#"
-            className="rounded-full p-3 border-2 bg-white ml-8
+          <NextLink href={"/cart"}>
+            <a
+              className="rounded-full p-3 border-2 bg-white ml-8
             hover:bg-sky-600 hover:text-white duration-300
           "
-          >
-            <span>
-              <BsCart />
-            </span>
-          </a>
+            >
+              <span>
+                <BsCart />
+              </span>
+            </a>
+          </NextLink>
           <div className="border-2 border-gray-300 w-8 rounded-md rotate-90"></div>
           <a
             href="#"

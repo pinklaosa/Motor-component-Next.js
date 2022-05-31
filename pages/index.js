@@ -7,7 +7,6 @@ import HomePage from "./homepage";
 const Home = () => {
   return (
     <>
-      <Navbar />
       <HomePage />
     </>
   );

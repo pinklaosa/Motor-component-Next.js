@@ -15,7 +15,7 @@ const Navbar = () => {
     },
     {
       name: "Product",
-      link: "/login",
+      link: "/product",
     },
   ];
 

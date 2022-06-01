@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Collection from "../../components/collection";
 
 const HomePage = () => {
   return (
@@ -8,8 +9,10 @@ const HomePage = () => {
       </Head>
 
       <div className="">
-        <div className="bg-gray-800 p-2">
-          <div className="flex flex-row">
+        <div
+          className="bg-hero-homepage bg-center bg-auto p-96 -mt-20"
+        >
+          {/* <div className="flex flex-row">
             <div className="flex p-36 w-1/2">
               <div className="flex flex-col text-white">
                 <div className="flex">
@@ -17,21 +20,13 @@ const HomePage = () => {
                 </div>
                 <div className="border-4 my-10"></div>
                 <div className="flex">
-                  {/* <a
-                    href="#"
-                    className="py-3 px-5 border-2 rounded-xl
-                      bg-gray-500 text-gray-800 border-gray-500
-                    "
-                  >
-                    Learn more ..{" "}
-                  </a> */}
                 </div>
               </div>
             </div>
             <div className="flex p-5 w-1/2 justify-center">
               <img src="../assets/homepage/H01.png" className="w-1/1" />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="container mx-auto p-24 my-2">
           <div className="flex flex-row">
@@ -77,8 +72,8 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <div className="">
-          
+        <div className="bg-gray-400">
+          <Collection />
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { FaOpencart } from "react-icons/fa";
 import Dropdown from "../../components/dropdown";
+import Navbar from "../../components/navbar";
 
 const Cart = () => {
   function classNames(...classes) {
@@ -13,7 +14,7 @@ const Cart = () => {
       <Head>
         <title>Cart</title>
       </Head>
-
+      <Navbar />
       <div className=" container mx-auto my-20">
         <div className="flex flex-row">
           <div className="flex flex-col w-2/3 px-12 py-5 text-slate-800">

@@ -4,10 +4,10 @@ import Navbar from "../components/navbar";
 import styles from "../styles/Home.module.css";
 import HomePage from "./homepage";
 
-
 const Home = () => {
   return (
     <>
+      <Navbar />
       <HomePage />
     </>
   );

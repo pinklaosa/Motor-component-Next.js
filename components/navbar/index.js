@@ -2,6 +2,8 @@ import { BiUser } from "react-icons/bi";
 import { BsCart } from "react-icons/bs";
 import { FcElectroDevices } from "react-icons/fc";
 import NextLink from "next/link";
+import React, { useEffect } from "react";
+import Axios from "axios";
 
 const Navbar = () => {
   const menuBar = [
@@ -18,6 +20,22 @@ const Navbar = () => {
       link: "/product",
     },
   ];
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    let axiosJWT = Axios.create({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    axiosJWT.post("http://localhost:3001/authen").then((response) => {
+      // console.log(response.data);
+      if (response.data.status !== 200) {
+        localStorage.removeItem("token");
+        window.location = "/login";
+      }
+    });
+  }, []);
 
   return (
     <nav
@@ -37,9 +55,7 @@ const Navbar = () => {
           {menuBar.map((m, i) => (
             <div className=" py-2 px-5" key={i}>
               <NextLink href={m.link}>
-                <a className="font-semibold hover:text-sky-600">
-                  {m.name}
-                </a>
+                <a className="font-semibold hover:text-sky-600">{m.name}</a>
               </NextLink>
             </div>
           ))}

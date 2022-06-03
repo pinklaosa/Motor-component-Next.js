@@ -1,6 +1,7 @@
 import ProductList from "../../components/productlist";
 import { useState } from "react";
 import Head from "next/head";
+import Navbar from "../../components/navbar";
 
 const products = [
   {
@@ -20,11 +21,13 @@ const Product = () => {
   const [categorySelected, setCategorySelected] = useState();
 
   return (
+
     <>
+
       <Head>
         <title>Product</title>
       </Head>
-      
+            <Navbar />
       <div
         className=" py-32 flex flex-col m-auto items-center rounded-b-3xl shadow-md 
       bg-hero-pattern bg-cover bg-center "

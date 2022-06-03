@@ -1,6 +1,44 @@
 import Head from "next/head";
+import React, { useState } from "react";
+import Axios from "axios";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [usernameUp,setUsernameUp] = useState("");
+  const [passwordUp,setPasswordUp] = useState("");
+  const [confpassword,setConfpassword] = useState("");
+
+  const submitSignin = () => {
+    Axios.post("http://localhost:3001/logged", {
+      username: username,
+      password: password,
+    }).then((response) => {
+      if (response.data.status === 200) {
+        localStorage.setItem("token", response.data.token);
+        window.location = "/";
+      } else {
+        alert(response.data.msg);
+      }
+    });
+  };
+
+  const submitRegister = () => {
+    Axios.post("http://localhost:3001/register", {
+      username: usernameUp,
+      password: passwordUp,
+      confpassword: confpassword,
+    }).then((response) => {
+      if(response.data.status === 200){
+        alert(response.data.msg);
+        window.location = '/login';
+      }else{
+        alert(response.data.msg);
+      }
+    });
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gray-100">
       <Head>
@@ -21,6 +59,7 @@ const Login = () => {
                   name="username"
                   placeholder="Username"
                   className="my-2 mx-4 bg-gray-100 outline-none text-sm flex-1"
+                  onChange={(e)=>setUsernameUp(e.target.value)}
                 />
               </div>
               <div className="bg-gray-100 w-64 p-1 flex mt-2 rounded-lg">
@@ -29,6 +68,7 @@ const Login = () => {
                   name="password"
                   placeholder="Password"
                   className="my-2 mx-4 bg-gray-100 outline-none text-sm flex-1"
+                  onChange={(e) => setPasswordUp(e.target.value)}
                 />
               </div>
               <div className="bg-gray-100 w-64 p-1 flex mt-2 rounded-lg">
@@ -37,6 +77,7 @@ const Login = () => {
                   name="re-password"
                   placeholder="Confirm Password"
                   className="my-2 mx-4 bg-gray-100 outline-none text-sm flex-1"
+                  onChange={(e) => setConfpassword(e.target.value)}
                 />
               </div>
               {/* <div className="flex w-64 justify-between mt-2">
@@ -50,6 +91,7 @@ const Login = () => {
                 href="#"
                 className="border-2 border-sky-600 rounded-full bg-sky-600 px-12 py-2 
                 inline-block font-semibold text-white my-5 hover:bg-white hover:text-sky-600"
+                onClick={() => submitRegister()}
               >
                 Sign up
               </a>
@@ -66,24 +108,26 @@ const Login = () => {
                   name="username"
                   placeholder="Username"
                   className="my-2 mx-4 bg-sky-100 outline-none text-sm flex-1"
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="bg-sky-100 w-60 p-1 flex mt-2 rounded-lg text-sky-600">
-              <input
+                <input
                   type="password"
                   name="password"
                   placeholder="Password"
                   className="my-2 mx-4 bg-sky-100 outline-none text-sm flex-1"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
-
             <a
               href="#"
               className="border-2 border-white 
               rounded-full px-12 py-2 
               inline-block font-semibold 
               hover:bg-white hover:text-sky-600 mt-5"
+              onClick={() => submitSignin()}
             >
               Sign in
             </a>

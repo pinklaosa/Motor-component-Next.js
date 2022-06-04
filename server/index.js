@@ -64,7 +64,6 @@ app.post("/register", (req, res) => {
             }
           }
         );
-
       }
     });
   }
@@ -86,9 +85,13 @@ app.post("/logged", (req, res) => {
         if (users.length > 0) {
           bcrypt.compare(password, users[0].password, function (err, result) {
             if (result) {
-              const token = jwt.sign({ username: users[0].username }, secretKey, {
-                expiresIn: "1h",
-              });
+              const token = jwt.sign(
+                { username: users[0].username },
+                secretKey,
+                {
+                  expiresIn: "1h",
+                }
+              );
               res.json({ status: 200, msg: "Logging successfully !", token });
             } else {
               res.json({
@@ -117,7 +120,65 @@ app.post("/authen", (req, res) => {
   }
 });
 
+app.get("/product", (req, res) => {
+  connection.query(
+    "SELECT * FROM products INNER JOIN category ON products.categoryId = category.categoryId",
+    [],
+    (err, result) => {
+      if (err) {
+        res.json({ status: 404, msg: err.message });
+      }
+      if (result) {
+        res.json({ status: 200, result: result });
+      }
+    }
+  );
+});
 
+app.get("/rfm", (req, res) => {
+  connection.query(
+    "SELECT * FROM rfm",
+    [],
+    (err, result) => {
+      if (err) {
+        res.json({ status: 404, msg: err.message });
+      }
+      if (result) {
+        res.json({ status: 200, result: result });
+      }
+    }
+  );
+});
+
+app.get("/association", (req, res) => {
+  connection.query(
+    "SELECT * FROM association",
+    [],
+    (err, result) => {
+      if (err) {
+        res.json({ status: 404, msg: err.message });
+      }
+      if (result) {
+        res.json({ status: 200, result: result });
+      }
+    }
+  );
+});
+
+app.get("/freq", (req, res) => {
+  connection.query(
+    "SELECT * FROM freq",
+    [],
+    (err, result) => {
+      if (err) {
+        res.json({ status: 404, msg: err.message });
+      }
+      if (result) {
+        res.json({ status: 200, result: result });
+      }
+    }
+  );
+});
 
 app.listen(port, () => {
   console.log(`This app listening on port ${port}`);

@@ -1,7 +1,25 @@
-import { useState } from "react";
+import { useState, useMemo, memo } from "react";
 import { BsCartPlusFill } from "react-icons/bs";
 const ProductList = (props) => {
   let { products, category } = props;
+
+  if (category != "All")
+    products = products.filter(
+      (p) => p.categoryName === category.toLowerCase()
+    );
+  else products = products;
+
+  const handleSelectProduct = (id) => {
+    let cart = localStorage.getItem("cart");
+    let listSelected;
+    if (cart === null) {
+      listSelected = id + " ";
+    } else {
+      listSelected = cart + " " + id;
+    }
+
+    localStorage.setItem("cart", listSelected);
+  };
 
   return (
     <div className="bg-white">
@@ -12,19 +30,19 @@ const ProductList = (props) => {
         <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
           {category ? <>{category}</> : "All"}
         </h2>
-
         <div
           className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 
         sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
         >
-          {products.map((product) => (
-            <div key={product.id} className="group relative">
+          {products.map((product, i) => (
+            <div key={i} className="group relative">
               <div
                 className="bg-white rounded-full p-3 z-10 
                 absolute top-3 right-3 shadow-lg border-2
                 border-slate-200 text-2xl text-slate-700 cursor-pointer
-                transition ease-in-out delay-150 hover:-translate-1 hover:scale-110
+                transition ease-in-out hover:-translate-1 hover:scale-110
                  duration-300"
+                onClick={() => handleSelectProduct(product.id)}
               >
                 <BsCartPlusFill />
               </div>
@@ -34,8 +52,13 @@ const ProductList = (props) => {
                overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none"
               >
                 <img
-                  src={product.imageSrc}
-                  alt={product.imageAlt}
+                  src={
+                    "../../assets/web/" +
+                    product.categoryName +
+                    "/" +
+                    product.productId +
+                    ".png"
+                  }
                   className="w-full h-full object-center object-cover 
                   lg:w-full lg:h-full"
                 />
@@ -45,13 +68,12 @@ const ProductList = (props) => {
                   <h3 className="text-sm text-gray-700">
                     <a>
                       <span aria-hidden="true" className="absolute inset-0" />
-                      {product.name}
+                      {product.productName}
                     </a>
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                 </div>
                 <p className="text-sm font-medium text-gray-900">
-                  {product.price}
+                  {product.productPrice}
                 </p>
               </div>
             </div>

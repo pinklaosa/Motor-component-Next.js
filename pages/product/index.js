@@ -1,33 +1,31 @@
 import ProductList from "../../components/productlist";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Head from "next/head";
 import Navbar from "../../components/navbar";
+import Axios from "axios";
 
-const products = [
-  {
-    id: 1,
-    name: "Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-];
-let categoryList = ["All", "Battery", "Oil", "Rubbon"];
+let categoryList = ["All", "Battery", "Oil", "Tire"];
 
 const Product = () => {
-  const [categorySelected, setCategorySelected] = useState();
+  const [categorySelected, setCategorySelected] = useState("All");
+  const [products, setProducts] = useState([]);
+  // const [listProducts, setListProducts] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/product").then((res) => {
+      if (res.data.status === 200) {
+        setProducts(res.data.result);
+      }
+    });
+  }, []);
+
 
   return (
-
     <>
-
       <Head>
         <title>Product</title>
       </Head>
-            <Navbar />
+      <Navbar />
       <div
         className=" py-32 flex flex-col m-auto items-center rounded-b-3xl shadow-md 
       bg-hero-pattern bg-cover bg-center "

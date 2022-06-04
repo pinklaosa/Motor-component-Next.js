@@ -40,7 +40,7 @@ const Navbar = () => {
   return (
     <nav
       className="bg-white border-gray-200 px-2 sm:px-4 py-4 rounded
-      shadow-xl sticky top-0"
+      shadow-xl sticky top-0 z-30"
     >
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <a href="#" className="flex items-center">

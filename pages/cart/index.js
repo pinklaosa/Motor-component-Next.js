@@ -29,7 +29,7 @@ const Cart = () => {
   useEffect(() => {
     let totalPrice = 0;
     let cart = [];
-    if (cart && items != "") {
+    if (cart && items != "" && items) {
       cart = items.split(" ");
       cart = cart.map((item) => parseInt(item));
     }

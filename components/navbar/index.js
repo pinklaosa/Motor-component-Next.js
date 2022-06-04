@@ -1,4 +1,5 @@
 import { BiUser } from "react-icons/bi";
+import { FiLogOut } from "react-icons/fi";
 import { BsCart } from "react-icons/bs";
 import { FcElectroDevices } from "react-icons/fc";
 import NextLink from "next/link";
@@ -37,6 +38,11 @@ const Navbar = () => {
     });
   }, []);
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location = "/login";
+  };
+
   return (
     <nav
       className="bg-white border-gray-200 px-2 sm:px-4 py-4 rounded
@@ -74,10 +80,11 @@ const Navbar = () => {
           <a
             href="#"
             className="rounded-full p-3 border-2 bg-white 
-          hover:bg-sky-600 hover:text-white duration-300"
+          hover:bg-red-500 hover:text-white duration-300"
+            onClick={() => logout()}
           >
             <span>
-              <BiUser />
+              <FiLogOut />
             </span>
           </a>
         </div>

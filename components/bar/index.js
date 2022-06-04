@@ -1,7 +1,7 @@
 import ReactEcharts from "echarts-for-react";
 const Bar = (props) => {
   const { style, data } = props;
-  let support = data.map((d) => d["support"] * 100);
+  let support = data.map((d) => d["support"]);
   let name = data.map((d) => d["item_name"]);
   let option = {
     tooltip: {

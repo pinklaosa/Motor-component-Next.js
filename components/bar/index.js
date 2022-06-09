@@ -10,7 +10,6 @@ const Bar = (props) => {
         type: "shadow",
       },
     },
-
     title: {
       text: "The most popular products and services",
       left: "center",

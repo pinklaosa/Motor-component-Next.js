@@ -3,8 +3,9 @@ import { useState, useEffect, useMemo } from "react";
 import Head from "next/head";
 import Navbar from "../../components/navbar";
 import Axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
-let categoryList = ["All", "Battery", "Oil", "Tire"];
+let categoryList = ["All", "Battery", "Oil", "Tire", "Service"];
 
 const Product = () => {
   const [categorySelected, setCategorySelected] = useState("All");
@@ -35,16 +36,21 @@ const Product = () => {
       <div className="container mx-auto">
         <div class="grid grid-flow-col gap-7 items-center text-center -mt-14">
           {categoryList.map((c, i) => (
-            <div
-              href="#"
-              className="bg-white w-full p-24 border-2 rounded-lg border-gray-200 
+            <>
+              <div
+                href="#"
+                className="bg-white w-full p-24 border-2 rounded-lg border-gray-200 
                 shadow-md text-2xl font-semibold hover:ring-2 hover:ring-slate-700
                 cursor-pointer"
-              key={i}
-              onClick={() => setCategorySelected(c)}
-            >
-              {c}
-            </div>
+                key={i}
+                onClick={() => {
+                  setCategorySelected(c);
+                }}
+              >
+                {c}
+              </div>
+              
+            </>
           ))}
         </div>
       </div>
